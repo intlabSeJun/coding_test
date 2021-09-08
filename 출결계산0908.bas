@@ -1,24 +1,22 @@
-' 출결,과제 벌금 자동 계산 ( 홑 따움표는 주석 )
+Attribute VB_Name = "Module21"
 Sub count_attendance()
-    For i = 1 To 3 ' 사람 수 
-        Sheets("출석 및 과제표").Select ' 시트 선택
-        Range("A1").Select ' 기준 시트 선택
-        count_attend_absent = 0 ' 결석
-        count_attend_late = 0 ' 지각
-        count_homework = 0 ' 과제
+    For i = 1 To 3
+        Sheets("�⼮ �� ����ǥ").Select
+        Range("A1").Select
+        count_attend_absent = 0
+        count_attend_late = 0
+        count_homework = 0
         
-        For j = 0 To 11 ' 주차 수(3개월)
-	' 출석
-            cell_value = Cells(3 + (i - 1) + (3 * j), 3).Value ' Cells는 좌표가 (1,1)부터 시작
+        For j = 0 To 11
+            cell_value = Cells(3 + (i - 1) + (3 * j), 3).Value
             If cell_value = "" Then
                 
-            ElseIf cell_value = "△" Then
+            ElseIf cell_value = "��" Then
                 count_attend_late = count_attend_late + 1
             ElseIf cell_value = "X" Then
                 count_attend_absent = count_attend_absent + 1
             End If
             
-	' 과제
             cell_value2 = Cells(3 + (i - 1) + (3 * j), 5).Value
             If cell_value2 = "" Then
                 Exit For
@@ -27,7 +25,7 @@ Sub count_attendance()
             
             
         Next j
-        Sheets("벌금합계").Select ' 시트 선택
+        Sheets("�����հ�").Select
         Range("A1").Select
         ActiveCell.Offset(1 + i, 2) = count_attend_absent * 3000
         ActiveCell.Offset(1 + i, 3) = count_attend_late * 2000

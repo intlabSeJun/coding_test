@@ -13,6 +13,7 @@
 출력
 각 케이스마다 한 줄씩 평균을 넘는 학생들의 비율을 반올림하여 소수점 셋째 자리까지 출력한다.
 """
+"""
 import sys
 case = int(input())
 percent = []
@@ -23,6 +24,22 @@ for i in range(case):
     for j, value in enumerate(new_line):
         if value > mean_line:
             percent.append((len(new_line)-j)/len(new_line))
+            break
+
+for k in range(len(percent)):
+    print('%.3f%%' % (percent[k]*100))#"""
+
+
+import sys
+case = int(input())
+percent = [0.000] * case
+for i in range(case):
+    line = list(map(int, sys.stdin.readline().split())) # 받은 line을 공백 단위로 split해서 list 형태로 저장. + int형태로 전환.
+    mean_line = sum(line[1:])/line[0]
+    new_line = sorted(line[1:])
+    for j, value in enumerate(new_line):
+        if value > mean_line:
+            percent[i] = ((len(new_line)-j)/len(new_line))
             break
 
 for k in range(len(percent)):

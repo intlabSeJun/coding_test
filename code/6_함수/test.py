@@ -1,5 +1,4 @@
 
-a = [1,23]
-b = [3]
-print(ab)
-print(sum(a))
+r = range(33)
+print(*r)
+print({*r})
