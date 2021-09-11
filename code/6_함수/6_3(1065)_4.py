@@ -11,14 +11,11 @@
 출력
 첫째 줄에 1보다 크거나 같고, N보다 작거나 같은 한수의 개수를 출력한다.
 """
-def count_x(num):
-    y = 0
-    for i in range(1, num):
-        y += (9 - i) // 2 + i // 2 + 1 # 등차(+),(-),(같은)
-    return 99 + y
+
 
 
 n_list = list(map(int,list(input())))
+
 length= len(n_list)
 total_num = 0
 for i in range(1,length+1):
@@ -30,13 +27,21 @@ total_count = 0
 if length <= 2 :
     total_count = total_num
 elif length == 4:
-    total_count = count_x(9)
+    total_count = 99 + 9*5
 else:
-    total_count = count_x(hundred_x)
-    num = hundred_x*100 + (hundred_x-hundred_x//2)*10 + hundred_x-hundred_x//2*2
-    for i in range(num,total_num+1):
-        x,y,z = map(int,str(i))
-
-        if x-y == y-z:
-            total_count += 1
+    total_count = 99 + (hundred_x-1)*5
+    if n_list[0] < n_list[1]:
+        for i in range(1, (9-hundred_x)//2 + 1):
+            num = hundred_x*100 + (hundred_x+i)*10 + hundred_x+2*i
+            if num <= total_num:
+                total_count +=1
+            else:
+                break
+        total_count += hundred_x // 2 + 1
+    else:
+        for i in range(0, hundred_x//2+1):
+            num = hundred_x*100 + (hundred_x-i)*10 + hundred_x-2*i
+            if num <= total_num:
+                total_count += hundred_x//2 +1 - i
+                break
 print(total_count)
