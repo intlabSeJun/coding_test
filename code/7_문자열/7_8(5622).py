@@ -21,4 +21,31 @@
 출력
 첫째 줄에 다이얼을 걸기 위해서 필요한 최소 시간을 출력한다.
 """
+"""
+풀이
+: 다이얼 넘버를 아스키 코드로 전환,
+80을 기준으로 잡고 그것보다 큰것과, 작은 것의 다이얼에 따라 다른 값을 반환하도록 함수 생성
+"""
 # 알고리즘 생각중...
+import math
+
+def func(ch):
+    ch_2 = ord(ch)
+    if ch_2 >= 80:
+        y = 7 + math.ceil((ch_2-80)/3) - ch_2//90 + 80//ch_2
+    else:
+        y = 8 - math.ceil((80-ch_2)/3)
+
+    return y
+
+word = list(input())
+count = 0
+for i in word:
+    count += func(i)
+print(count)
+
+
+
+"""1등코드
+print(sum((ord(i)-62-(i in 'SVYZ')-(i=='Z'))//3+2 for i in input()))
+"""
