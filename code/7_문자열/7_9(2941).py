@@ -23,66 +23,39 @@ dž는 무조건 하나의 알파벳으로 쓰이고, d와 ž가 분리된 것�
 출력
 입력으로 주어진 단어가 몇 개의 크로아티아 알파벳으로 이루어져 있는지 출력한다.
 """
-"""cro = ['c-', 'd-', 'lj', 'nj', 'c=', 'dz=', 's=', 'z=']
+count = 0
+count_z = 0
+count_dz = 0
+def find_cro(n, k):
+    global count,count_z, count_dz
+    k1 = string.find(n,k)
+    if k1 == -1:
+        return
+    else:
+        if n == 'z=':
+            count_z += 1
+        elif n == 'dz=':
+            count_dz += 1
+        else:
+            count += 1
+        find_cro(n,k1+2)
+
+cro = ['c-', 'd-', 'lj', 'nj', 'c=', 's=', 'z=', 'dz=']
 string = input()
 
-len_string = len(string)
-count = 0
-total_num = 0
 for n in cro:
-    k = string.find(n)
-    print(k)
-    a = list(map(str,string))
-    del a[k:len(n)+1]
-    print(a)
-    print(n, string)
-    if k != -1:
-        count += 1
-        total_num += len(n)
-print(len(string) - total_num + count)#"""
+    find_cro(n,0)
+count *= 2
+count += (count_z-count_dz)*(2)
 
+print(len(string) - count + int(count/2) -count_dz*3 + count_dz)
 
-"""cro = ['c-', 'd-', 'lj', 'nj', 'c=', 'dz=', 's=', 'z=']
-string = input()
+""" # 와, 나 이렇게 간단한 문제였다니
+croatia = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
 
-count = 0
-k = 0
-buf = 0
-for n in cro:
-    while(1):
-        k = string.find(n,buf)
-        if k == -1:
-            break
-        buf = k
-        count+=1
-        string1 = string[:k]
-        string2 = string[k+len(n):]
-        string = string1 + string2
-        print(string)
-print(len(string) + count)#"""
+word = input()
 
-
-cro = ['c-', 'd-', 'lj', 'nj', 'c=', 's=', 'z=']
-string = input()
-
-count = 0
-k = 0
-buf = 0
-
-ab = string.find('dz=')
-if ab != -1:
-    string1 = string[:ab]
-    string2 = string[ab+1:]
-
-for n in cro:
-    while(1):
-        k = string.find(n,buf)
-        if k == -1:
-            break
-        buf = k
-        count+=1
-        string1 = string[:k]
-        string2 = string[k+len(n):]
-        string = string1 + string2
-        print(string)
-print(len(string) + count)
+for i in croatia:
+    word = word.replace(i, 'a')
+print(len(word))
+"""
