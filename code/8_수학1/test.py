@@ -1,9 +1,8 @@
 
-import time
+list = [1,2,3,4]
 
-s = time.time()
-
-for i in range(1000000):
-    print(i)
-e = time.time()
-print(e-s)
+try:
+    if any(list[i]>=5 for i in list):
+        print(1)
+except:
+    print(222)
