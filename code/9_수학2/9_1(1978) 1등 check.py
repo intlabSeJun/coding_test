@@ -1,0 +1,15 @@
+import time
+s = time.time()
+li=list(range(1,1000))
+cnt=0
+for i in li:
+    f=True
+    if i<=1:continue
+    for j in range(2,i):
+        if i%j==0:
+            f=False
+            break
+    if f:
+        cnt+=1
+print(cnt)
+print(time.time() - s)
